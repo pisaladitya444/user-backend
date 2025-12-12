@@ -34,7 +34,7 @@ exports.login = async (req,res)=>{
         const passwordConform = await bcrypt.compare(req.body.password,userExist.password)
         if(!passwordConform) return res.json({errors:true,message:"email or password invalied"})
         
-        const token = await jwt.sign({id:userExist._id},process.env.SVC)
+        const token = await jwt.sign({id:userExist._id},process.env.SEC)
         return res.json({errors:false,data:{token:token,user:userExist}})
         
     } catch (error) {
